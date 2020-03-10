@@ -10,9 +10,13 @@
         <div id="line"></div>
         <h1 id="LogoBottomText"> Web design and App specialists </h1>
       </div>
-
     </div>
-
+    <div class="container">
+      <h4 class="SplashReadMore"> More </h4>
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+    </div>
   </div>
 </template>
 
@@ -27,10 +31,11 @@
         mounted() {
             const { bubble, bubblePulse } = this.$refs;
             var LogoStringTimeline = new TimelineMax({paused: true});
-            LogoStringTimeline.to("#LogoNameRight", 2, {x:-400, opacity:1}).to("#LogoNameLeft", 2, {x:150, opacity:1}, "-=2").to(
-                "#bubble", 2, {width: '6vw', height: '6vw', y:'-40vh', x:'-46vw', ease: Back.easeOut.config(1)}).to("#bubble-wrapper", 2, {width: '11vw', height: '11vw', }, "-=2").to(
-                    "#LogoNameRight", 2, {x:0}).to("#LogoNameLeft", 2, {x:20}, "-=2").from(
-                        "#line", 0.5, { scaleX: 0, transformOrigin: "right center" }).to("#LogoBottomText", 0.75, { y: -40, opacity: 1 }, "text");
+            LogoStringTimeline.to("#LogoNameRight", 0.5, {x:-400, opacity:1}).to("#LogoNameLeft", 0.5, {x:150, opacity:1}, "-=0.5").to(
+                "#bubble", 1, {width: '6vw', height: '6vw', y:'-40vh', x:'-46vw', ease: Back.easeOut.config(0.2)}).to("#bubble-wrapper", 1 , {width: '11vw', height: '11vw', }, "-=0.9").to(
+                    "#LogoNameRight", 1, {x:0}).to("#LogoNameLeft", 1, {x:20}, "-=1").from(
+                        "#line", 0.3, { scaleX: 0, transformOrigin: "right center" }).to("#LogoBottomText", 0.45, { y: -40, opacity: 1 }, "text").to(
+                            '#LogoName', 0.7, {y: '-1vh', ease: Back.easeOut.config(1)});
 
 
 
@@ -110,9 +115,13 @@
   #SplashZone {
     width: 100vw;
     height: 100vh;
-    display: flex;
+    display: grid;
+    grid-template-rows: 95% 5%;
     justify-content: center;
   }
+
+
+
   .bubble-wrapper {
     position: relative;
     display: flex;
@@ -168,6 +177,82 @@
     font-weight: 300;
     opacity: 0;
   }
+  .SplashReadMore {
+    transform: translateY(-2vh);
+    font-size: 1vw;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    transition: 1s;
+  }
   /* Global Styles */
+
+
+
+  .container:hover .SplashReadMore {
+    transform: translateY(0.1vh);
+    font-size: 2vw;
+    font-weight: 600;
+  }
+  .container:hover {
+    cursor: pointer;
+  }
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    height: 25vh;
+    transform: translateY(-20vh);
+  }
+  .chevron {
+    position: absolute;
+    width: 2.1rem;
+    height: 0.48rem;
+    opacity: 0;
+    transform: scale(0.3);
+    transition: 0.5s;
+    animation: move-chevron 3s ease-out infinite;
+  }
+  .chevron:first-child {
+    animation: move-chevron 3s ease-out 1s infinite;
+  }
+  .chevron:nth-child(2) {
+    animation: move-chevron 3s ease-out 2s infinite;
+  }
+
+  .chevron:before, .chevron:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    background: #2c3e50;
+  }
+  .chevron:before {
+    left: 0;
+    transform: skewY(30deg);
+  }
+  .chevron:after {
+    right: 0;
+    width: 50%;
+    transform: skewY(-30deg);
+  }
+  @keyframes move-chevron {
+    25% {
+      opacity: 1;
+    }
+    33.3% {
+      opacity: 1;
+      transform: translateY(2.28rem);
+    }
+    66.6% {
+      opacity: 1;
+      transform: translateY(3.12rem);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(4.8rem) scale(0.5);
+    }
+  }
 
 </style>
