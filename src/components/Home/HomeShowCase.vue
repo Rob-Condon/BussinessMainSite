@@ -7,15 +7,22 @@
 
     </div>
     <div v-on:click="ClickDesgin()" class="Service" id="WebDesgin">
-       Web Design
+      <div id="Item1Background"></div>
+      <div class="TextContent">
+        Web Design
+      </div>
+
     </div>
     <div v-on:click="ClickMarketing()" class="Service" id="Marketing">
+      <div id="Item2Background"></div>
       Marketing
     </div>
     <div v-on:click="ClickSEO()" class="Service" id="SEO">
+      <div id="Item3Background"></div>
       SEO
     </div>
     <div v-on:click="ClickMobile()" class="Service" id="Mobile">
+      <div id="Item4Background"></div>
       Mobile Development
     </div>
     <div id="ShowCaseBackground">
@@ -34,42 +41,59 @@
             return {
                 AboutUsContent: false,
                 Clicked: 0,
+                Pictures: [
+                    require('../../assets/images/Tiny/WebDesgin.png') ,
+                    require('../../assets/images/Tiny/Marketing.png'),
+                    require('../../assets/images/Tiny/SEO.png'),
+                    require('../../assets/images/Tiny/Mobile.png')
+                ],
             }
         },
         methods: {
+            //url("../../assets/images/Tiny/SEO.jpg")
           ClickDesgin: function() {
             if(this.Clicked !== 1) {
-                document.getElementById('ShowCaseBackground').style.backgroundColor = "rgba(255, 255, 255, 0.6)"
+                document.getElementById('ShowCaseBackground').style.opacity = "1";
+                document.getElementById('ShowCaseBackground').style.backgroundImage = "url("+this.Pictures[0]+")";
+                document.getElementById('Item1Background').style.backgroundColor = 'rgba(255, 252, 242, 1)';
+                document.getElementById('Item1Background').style.width = '85vw';
                 this.Clicked = 1;
             } else {
-                document.getElementById('ShowCaseBackground').style.backgroundColor = "rgba(255, 255, 255, 0.1)"
+                document.getElementById('ShowCaseBackground').style.opacity = "0";
+                document.getElementById('Item1Background').style.backgroundColor = 'rgba(255, 252, 242, .35)';
+                document.getElementById('Item1Background').style.width = '78vw';
                 this.Clicked = 0;
             }
           },
           ClickMarketing: function() {
               if(this.Clicked !== 2) {
-                  document.getElementById('ShowCaseBackground').style.backgroundColor = "rgba(255, 155, 255, 0.6)"
+                  document.getElementById('ShowCaseBackground').style.opacity = "1";
+                  document.getElementById('ShowCaseBackground').style.backgroundImage = "url("+this.Pictures[1]+")";
+
                   this.Clicked = 2;
               } else {
-                  document.getElementById('ShowCaseBackground').style.backgroundColor = "rgba(255, 255, 255, 0.1)"
+                  document.getElementById('ShowCaseBackground').style.opacity = "0";
+
                   this.Clicked = 0;
               }
           },
           ClickSEO: function() {
               if(this.Clicked !== 3) {
-                  document.getElementById('ShowCaseBackground').style.backgroundColor = "rgba(255, 255, 155, 0.6)"
+                  document.getElementById('ShowCaseBackground').style.opacity = "1";
+                  document.getElementById('ShowCaseBackground').style.backgroundImage = "url("+this.Pictures[2]+")";
                   this.Clicked = 3;
               } else {
-                  document.getElementById('ShowCaseBackground').style.backgroundColor = "rgba(255, 255, 255, 0.1)"
+                  document.getElementById('ShowCaseBackground').style.opacity = "0";
                   this.Clicked = 0;
               }
           },
           ClickMobile: function() {
               if(this.Clicked !== 4) {
-                  document.getElementById('ShowCaseBackground').style.backgroundColor = "rgba(155, 255, 255, 0.6)"
+                  document.getElementById('ShowCaseBackground').style.opacity = "1";
+                  document.getElementById('ShowCaseBackground').style.backgroundImage = "url("+this.Pictures[3]+")";
                   this.Clicked = 4;
               } else {
-                  document.getElementById('ShowCaseBackground').style.backgroundColor = "rgba(255, 255, 255, 0.1)"
+                  document.getElementById('ShowCaseBackground').style.opacity = "0";
                   this.Clicked = 0;
               }
           }
@@ -90,6 +114,8 @@
   z-index: 1;
   background: linear-gradient(to left,#A4B0F5, #FFFCF2);
   width: 100vw;
+  max-width: 100%;
+  overflow-x: hidden;
   height: 100vh;
   margin-top: 20vh;
   display: grid;
@@ -102,6 +128,7 @@
   "SEO SEO SEO SEO NONE3 NONE3 WeDo WeDo WeDo WeDo"
   "NONE11 NONE11 Mobile Mobile Mobile Mobile WeDo WeDo WeDo WeDo";
   text-align: center;
+
 }
 #WeDo {
   grid-area: WeDo;
@@ -109,7 +136,9 @@
   color: #261D4F;
   font-family: 'Josefin Sans', sans-serif;
   font-weight: 400;
-  background: #9e978e;
+  background: rgba(104,109,136,0.8);
+  box-shadow:  inset 0 0 60px rgba(104,109,136,1),
+    0 0 60px rgba(104,109,136,0.7);
   height: 50vh;
   border-bottom-left-radius: 100%;
   border-top-left-radius: 100%;
@@ -118,7 +147,7 @@
   justify-items: center;
   justify-content: center;
   display: flex;
-  z-index: 1;
+  z-index: 2;
 }
 .ShowContent {
   alignment: center;
@@ -132,6 +161,7 @@
   font-family: 'Josefin Sans', sans-serif;
   font-weight: 200;
   z-index: 1;
+  overflow: hidden;
 }
 .Service:hover {
   cursor: pointer;
@@ -153,11 +183,44 @@
   position: absolute;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(255, 255, 155, 0.6);
   border-bottom-left-radius: 100%;
   border-top-left-radius: 100%;
-  transition: 1s;
+  transition:  0.4s ease-in-out;
   z-index: 0;
+  filter:blur(2px);
+  max-width: 99%;
+  overflow-x: hidden;
+}
+#Item1Background {
+  background-color: rgba(255, 252, 242, .35);
+  width: 78vw;
+  transform: translate(6vw, -7vh) skew(-50deg);;
+}
+#Item2Background {
+  width: 95vw;
+  transform: translate(6vw, -7vh) skew(-50deg);;
+}
+#Item3Background {
+  width: 95vw;
+  transform: translate(6vw, -7vh) skew(50deg);;
+}
+#Item4Background {
+  width: 78vw;
+  transform: translate(6vw, -7vh) skew(50deg);;
+}
+#Item1Background, #Item2Background, #Item3Background, #Item4Background {
+  z-index: -1;
+  box-shadow:  inset 0 0 30px rgba(255, 252, 242, .4),
+  0 0 60px rgba(255,252,242,0.5);
+  background-color: rgba(255, 252, 242, .35);
+  overflow-x: hidden;
+  position: absolute;
+  right: 0;
+  transition: 1s;
+  height: 18vh;
+}
+.TextContent {
+  z-index: 5;
 }
 h1, h2 {
   display: initial;
