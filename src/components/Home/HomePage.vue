@@ -3,6 +3,8 @@
     <navbar></navbar>
     <home-page-splash-screen ></home-page-splash-screen>
     <HomeShowCase></HomeShowCase>
+    <Testing></Testing>
+    <div style="height: 400px"></div>
   </div>
 </template>
 
@@ -10,9 +12,10 @@
     import HomePageSplashScreen from "./HomePageSplashScreen";
     import Navbar from "../Global/Navbar";
     import HomeShowCase from '../Home/HomeShowCase'
+    import Testing from "./Testing";
     export default {
         name: "HomePage",
-        components: {Navbar, HomePageSplashScreen, HomeShowCase}
+        components: {Testing, Navbar, HomePageSplashScreen, HomeShowCase}
     }
     //"
 </script>
