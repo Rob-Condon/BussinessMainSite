@@ -15,7 +15,7 @@
           <h3>Home Computers and networks are ready for the remote work for all employees?</h3>
           <div class="row cf">
             <div class="four col">
-              <input type="radio" name="r1" id="r11" checked>
+              <input type="radio" name="r1" id="r11">
               <label for="r11">
                 <h4>All</h4>
               </label>
@@ -39,7 +39,7 @@
           <h3>Remote Work Applications are ready to perform high-quality remote work?</h3>
           <div class="row cf">
             <div class="four col">
-              <input type="radio" name="r1" id="r21" checked>
+              <input type="radio" name="r1" id="r21">
               <label for="r21">
                 <h4>All</h4>
               </label>
@@ -63,7 +63,7 @@
           <h3>Education and Training for Effective Remote Work are available?</h3>
           <div class="row cf">
             <div class="four col">
-              <input type="radio" name="r1" id="r31" checked>
+              <input type="radio" name="r1" id="r31">
               <label for="r31">
                 <h4>All</h4>
               </label>
@@ -87,7 +87,7 @@
           <h3>Internet bandwidth and internal network can handle increased load?</h3>
           <div class="row cf">
             <div class="four col">
-              <input type="radio" name="r1" id="r41" checked>
+              <input type="radio" name="r1" id="r41">
               <label for="r41">
                 <h4>All</h4>
               </label>
@@ -111,7 +111,7 @@
           <h3>•	The IT Architecture is ready to handle a disaster, fail or relocation?</h3>
           <div class="row cf">
             <div class="four col">
-              <input type="radio" name="r1" id="r51" checked>
+              <input type="radio" name="r1" id="r51">
               <label for="r51">
                 <h4>All</h4>
               </label>
@@ -135,7 +135,7 @@
           <h3>There is a Business Continuity Plan in place and people know the process</h3>
           <div class="row cf">
             <div class="four col">
-              <input type="radio" name="r1" id="r61" checked>
+              <input type="radio" name="r1" id="r61">
               <label for="r61">
                 <h4>All</h4>
               </label>
@@ -159,7 +159,7 @@
           <h3>The network and user security is enhanced for the increased remote work an potential cyber threats?</h3>
           <div class="row cf">
             <div class="four col">
-              <input type="radio" name="r1" id="r71" checked>
+              <input type="radio" name="r1" id="r71">
               <label for="r71">
                 <h4>All</h4>
               </label>
@@ -181,7 +181,15 @@
         </fieldset>
         <fieldset class="section">
           <h3>Quiz Done</h3>
-          <p>Your bussiness has failed and therefore will be on fire during the corna virus</p>
+          <p>{{((this.finalScore)*100).toFixed(1)}}%</p>
+          <div v-if="this.finalScore ===1">
+            u Good
+          </div>
+          <div v-else>
+            Looks like you still have stuff to work on<br>
+            Contact Us to see how to improve your business during this time!
+          </div>
+
           <div class="button">Reset Form</div>
         </fieldset>
       </form>
@@ -195,28 +203,68 @@
     export default {
         name: "Testing",
         data() {
-            return {}
+            return {
+              currentScore: 0,
+              maxScore: 7,
+              finalScore:0
+            }
         },
+      // methods:
+      //         {
+      //           getSelected: function() {
+      //             var $radio = $('input[name=r1]:checked').attr('id');
+      //             console.log($radio)
+      //           }
+      //         },
         mounted() {
+          let page = this;
             $(document).ready(function(){
                 $(".form-wrapper .button").click(function(){
                     var button = $(this);
-                    let RandomValue = $("input[type='radio'][name='r1']:checked").attr('id');
-                    console.log("Got this value from raido on click: "+RandomValue);
-                    var currentSection = button.parents(".section");
-                    var currentSectionIndex = currentSection.index();
-                    var headerSection = $('.steps li').eq(currentSectionIndex);
-                    currentSection.removeClass("is-active").next().addClass("is-active");
-                    headerSection.removeClass("is-active").next().addClass("is-active");
+                    if(this.innerText === "Reset Form")
+                    {
+                      page.currentScore = 0;
+                      page.finalScore = 0;
+                    }
+                    if (this.innerText === "Next")
+                    {
+                      let RandomValue = $("input[type='radio'][name='r1']:checked").attr('id');
+                      console.log("Got this value from raido on click: " + RandomValue);
+                      let SelectionScore = RandomValue[2];
 
-                    $(".form-wrapper").submit(function(e) {
+                      switch (SelectionScore) {
+                        case "1":
+                          page.currentScore += 1;
+                          break;
+
+                        case "2":
+                          page.currentScore += 0.5;
+                          break;
+
+                        case "3":
+                          page.currentScore += 0;
+                          break;
+
+                      }
+                      page.finalScore = page.currentScore / page.maxScore;
+                    }
+                      var currentSection = button.parents(".section");
+                      var currentSectionIndex = currentSection.index();
+                      var headerSection = $('.steps li').eq(currentSectionIndex);
+                      currentSection.removeClass("is-active").next().addClass("is-active");
+                      headerSection.removeClass("is-active").next().addClass("is-active");
+
+                      $(".form-wrapper").submit(function (e) {
                         e.preventDefault();
-                    });
+                      });
 
-                    if(currentSectionIndex === 7){
+
+                      if (currentSectionIndex === 7) {
                         $(document).find(".form-wrapper .section").first().addClass("is-active");
                         $(document).find(".steps li").first().addClass("is-active");
-                    }
+
+                      }
+
                 });
             });
 
