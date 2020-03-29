@@ -1,22 +1,21 @@
 <template>
   <div id="SplashZone">
-    <div id="bubble-wrapper" class="bubble-wrapper">
-      <div  id="bubble" ref="bubble" class="bubble">
-        <img class="bubble-image" src="../../assets/images/in-house-web-spider.svg" />
+
+    <div style="z-index: 1;" id="bubble-wrapper" class="bubble-wrapper">
+      <div style="z-index: 1;"  id="bubble" ref="bubble" class="bubble">
+        <img style="z-index: 1;" class="bubble-image" src="../../assets/images/in-house-web-spider.svg" />
       </div>
-      <div ref="bubblePulse" class="bubble-pulse"></div>
-      <div id="LogoName" class="LogoName">
-        <h1 id="LogoNameRight" class="LogoTitleString" style="opacity: 0"> In House  </h1> <h1 style="opacity: 0" id="LogoNameLeft" class="LogoTitleString"> Web</h1>
+      <div style="z-index: 1;" ref="bubblePulse" class="bubble-pulse"></div>
+      <div  id="LogoName" class="LogoName">
+        <h1 id="LogoNameRight" class="LogoTitleString" style="opacity: 0"> <b id="InColor">In</b> House  </h1> <h1 style="opacity: 0" id="LogoNameLeft" class="LogoTitleString"> Web</h1>
         <div id="line"></div>
-        <h1 id="LogoBottomText"> Web design and App specialists </h1>
+        <h1 id="LogoBottomText"> Web Design and App Specialists </h1>
+
       </div>
+      <img src="../../assets/images/LaptopBackground-min.png" alt="None" id="LaptopImage">
     </div>
-    <div class="container">
-      <h4 class="SplashReadMore"> More </h4>
-      <div class="chevron"></div>
-      <div class="chevron"></div>
-      <div class="chevron"></div>
-    </div>
+
+    <div id="SplashImage"></div>
   </div>
 </template>
 
@@ -25,6 +24,11 @@
     let $ = JQuery;
     import {  Back, Elastic, Expo, TimelineMax } from "gsap"
     export default {
+        data() {
+            return{
+                SplashZoneBackground:  require('../../assets/images/Tiny/WebDesgin.png'),
+            }
+        },
         methods: {
 
         },
@@ -34,8 +38,10 @@
             LogoStringTimeline.to("#LogoNameRight", 0.5, {x:-400, opacity:1}).to("#LogoNameLeft", 0.5, {x:150, opacity:1}, "-=0.5").to(
                 "#bubble", 1, {width: '6vw', height: '6vw', y:'-40vh', x:'-46vw', ease: Back.easeOut.config(0.2)}).to("#bubble-wrapper", 1 , {width: '11vw', height: '11vw', }, "-=0.9").to(
                     "#LogoNameRight", 1, {x:0}).to("#LogoNameLeft", 1, {x:20}, "-=1").from(
-                        "#line", 0.3, { scaleX: 0, transformOrigin: "right center" }).to("#LogoBottomText", 0.45, { y: -40, opacity: 1 }, "text").to(
-                            '#LogoName', 0.7, {y: '-1vh', ease: Back.easeOut.config(1)});
+                        "#line", 0.3, { scaleX: 0, transformOrigin: "right center" }).to("#LogoBottomText", 0.45, { y: -80, opacity: 1 }, "text").to(
+                            '#LogoName', 0.7, {y: '-1vh', ease: Back.easeOut.config(1)}).to(
+                                '#LaptopImage', 0.5, {opacity: 1, ease: Back.easeOut.config(0.5)},'-=0.5').to('#InColor', 0.75, {color: 'white'}, '-=0.5').to(
+                                    '#LogoBottomText', 0.5, {x:'5vw'}, '-=1.5').to('#LaptopImage', 1, {x:'-15.6vw'}).to('#LogoName',1,{x:'10vw'},'-=1');
 
 
 
@@ -116,8 +122,35 @@
     width: 100vw;
     height: 100vh;
     display: grid;
+
     grid-template-rows: 95% 5%;
     justify-content: center;
+    z-index: 1;
+    overflow: hidden;: hidden;
+    max-width: 100%;
+  }
+  #SplashImage:after {
+    content: "";
+  }
+  #InColor {
+    color: #261D4F;
+  }
+  #LaptopImage {
+    width: 45vw;
+    z-index: -1;
+    transform: translateX(-25.6vw);
+    position: absolute;
+    opacity: 0;
+  }
+  #SplashImage {
+    background: url(../../assets/images/FireBackground.jpg);
+    opacity: 0;
+    z-index: 0;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
   }
 
 
@@ -171,7 +204,7 @@
     justify-self: center;
   }
   #LogoBottomText {
-    transform: translateY(-11vh);
+    transform: translateY(-20vh);
     font-size: 2vw;
     font-family: 'Raleway', sans-serif;
     font-weight: 300;

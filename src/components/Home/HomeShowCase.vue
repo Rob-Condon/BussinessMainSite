@@ -1,4 +1,4 @@
-<template style="overflow-x: hidden; max-width: 100%;">
+<template>
   <div id="ShowCaseMain">
     <div id="WeDo">
       <div class="ShowContent">
@@ -34,7 +34,6 @@
 <script>
     //import JQuery from 'jquery';
     //let $ = JQuery;
-    import {TimelineMax } from "gsap"
     export default {
         name: "HomePage",
         components: {},
@@ -48,86 +47,54 @@
                     require('../../assets/images/Tiny/SEO.png'),
                     require('../../assets/images/Tiny/Mobile.png')
                 ],
-                TimeLine1: new TimelineMax({paused: true}),
-                TimeLine2: new TimelineMax({paused: true}),
-                TimeLine3: new TimelineMax({paused: true}),
-                TimeLine4: new TimelineMax({paused: true}),
-                TimeLines: [],
-                TimeLineBack1: new TimelineMax({paused: true}),
-                TimeLineBack2: new TimelineMax({paused: true}),
-                TimeLineBack3: new TimelineMax({paused: true}),
-                TimeLineBack4: new TimelineMax({paused: true}),
-                TimeLinesBack: [],
             }
         },
-    beforeMount() {
-        this.TimeLines.push(this.TimeLine1);
-        this.TimeLines.push(this.TimeLine2);
-        this.TimeLines.push(this.TimeLine3);
-        this.TimeLines.push(this.TimeLine4);
-
-        this.TimeLinesBack.push(this.TimeLineBack1);
-        this.TimeLinesBack.push(this.TimeLineBack2);
-        this.TimeLinesBack.push(this.TimeLineBack3);
-        this.TimeLinesBack.push(this.TimeLineBack4);
-        console.log("Pushed on");
-    },
         methods: {
             //url("../../assets/images/Tiny/SEO.jpg")
-            BackToNormal: function(TurnOff = 0) {
-
-                for(let number = 1; number <= 4; number++) {
-                    if(number !== TurnOff) {
-                        console.log(this.TimeLines[number-1]);
-                        console.log(number-1);
-                        this.TimeLinesBack[number-1].restart();
-                        //this.TimeLinesBack[number-1].play();
-                    }
-
-                }
-                if(TurnOff === 0) {
-                    document.getElementById('WeDo').style.background = 'rgba(104,109,136,0.95)';
-                }
-                document.getElementById('ShowCaseBackground').style.opacity = "0";
-                document.getElementById('WeDo').style.transform = 'scale(1)';
-                this.Clicked = 0;
-            },
-            Active: function(number) {
-                document.getElementById('WeDo').style.background = 'rgba(104,109,136,1)';
-                document.getElementById('WeDo').style.transform = 'scale(1.5)';
-                this.BackToNormal(number);
-                this.TimeLines[number-1].restart();
-                //this.TimeLines[number-1].play();
-                document.getElementById('ShowCaseBackground').style.opacity = "1";
-                document.getElementById('ShowCaseBackground').style.backgroundImage = "url("+this.Pictures[number-1]+")";
-                this.Clicked = number;
-          },
           ClickDesgin: function() {
             if(this.Clicked !== 1) {
-                this.Active(1)
+                document.getElementById('ShowCaseBackground').style.opacity = "1";
+                document.getElementById('ShowCaseBackground').style.backgroundImage = "url("+this.Pictures[0]+")";
+                document.getElementById('Item1Background').style.backgroundColor = 'rgba(255, 252, 242, 1)';
+                document.getElementById('Item1Background').style.width = '85vw';
+                this.Clicked = 1;
             } else {
-                this.BackToNormal();
+                document.getElementById('ShowCaseBackground').style.opacity = "0";
+                document.getElementById('Item1Background').style.backgroundColor = 'rgba(255, 252, 242, .35)';
+                document.getElementById('Item1Background').style.width = '78vw';
+                this.Clicked = 0;
             }
           },
           ClickMarketing: function() {
               if(this.Clicked !== 2) {
-                  this.Active(2)
+                  document.getElementById('ShowCaseBackground').style.opacity = "1";
+                  document.getElementById('ShowCaseBackground').style.backgroundImage = "url("+this.Pictures[1]+")";
+
+                  this.Clicked = 2;
               } else {
-                  this.BackToNormal();
+                  document.getElementById('ShowCaseBackground').style.opacity = "0";
+
+                  this.Clicked = 0;
               }
           },
           ClickSEO: function() {
               if(this.Clicked !== 3) {
-                  this.Active(3)
+                  document.getElementById('ShowCaseBackground').style.opacity = "1";
+                  document.getElementById('ShowCaseBackground').style.backgroundImage = "url("+this.Pictures[2]+")";
+                  this.Clicked = 3;
               } else {
-                  this.BackToNormal();
+                  document.getElementById('ShowCaseBackground').style.opacity = "0";
+                  this.Clicked = 0;
               }
           },
           ClickMobile: function() {
               if(this.Clicked !== 4) {
-                  this.Active(4)
+                  document.getElementById('ShowCaseBackground').style.opacity = "1";
+                  document.getElementById('ShowCaseBackground').style.backgroundImage = "url("+this.Pictures[3]+")";
+                  this.Clicked = 4;
               } else {
-                  this.BackToNormal();
+                  document.getElementById('ShowCaseBackground').style.opacity = "0";
+                  this.Clicked = 0;
               }
           }
         },
@@ -136,14 +103,7 @@
 
         },
         mounted() {
-            this.TimeLine1.to("#Item1Background", 1, {scaleX:2, scaleY: 1, backgroundColor: 'rgba(03, 06, 07, 0.9)'});
-            this.TimeLine2.to("#Item2Background", 1, {scaleX:2, backgroundColor: 'rgba(03, 06, 07, 0.9)'});
-            this.TimeLine3.to("#Item3Background", 1, {scaleX:2, backgroundColor: 'rgba(03, 06, 07, 0.9)'});
-            this.TimeLine4.to("#Item4Background", 1, {scaleX:2, backgroundColor: 'rgba(03, 06, 07, 0.9)'});
-            this.TimeLineBack1.to("#Item1Background", 0.5, {scaleX:1, scaleY: 1, backgroundColor: 'rgba(03, 06, 07, .35)'});
-            this.TimeLineBack2.to("#Item2Background", 0.5, {scaleX:1, scaleY: 1, backgroundColor: 'rgba(03, 06, 07, .35)'});
-            this.TimeLineBack3.to("#Item3Background", 0.5, {scaleX:1, scaleY: 1, backgroundColor: 'rgba(03, 06, 07, .35)'});
-            this.TimeLineBack4.to("#Item4Background", 0.5, {scaleX:1, scaleY: 1, backgroundColor: 'rgba(03, 06, 07, .35)'});
+
         }
     }
     //"
@@ -163,29 +123,25 @@
   align-items: center;
   grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
   grid-template-rows: 25% 25% 25% 25%;
-  grid-template-areas: "NONE1 NONE1 WebDesgin WebDesgin WeDo WeDo WeDo WeDo WeDo WeDo"
-  "Marketing Marketing Marketing NONE12 WeDo WeDo WeDo WeDo WeDo WeDo"
-  "SEO SEO SEO NONE13 WeDo WeDo WeDo WeDo WeDo WeDo"
-  "NONE11 NONE11 Mobile Mobile WeDo WeDo WeDo WeDo WeDo WeDo";
+  grid-template-areas: "NONE1 NONE1 WebDesgin WebDesgin WebDesgin WebDesgin WeDo WeDo WeDo WeDo"
+  "Marketing Marketing Marketing Marketing NONE2 NONE2 WeDo WeDo WeDo WeDo"
+  "SEO SEO SEO SEO NONE3 NONE3 WeDo WeDo WeDo WeDo"
+  "NONE11 NONE11 Mobile Mobile Mobile Mobile WeDo WeDo WeDo WeDo";
   text-align: center;
+
 }
 #WeDo {
   grid-area: WeDo;
   font-size: 5vw;
-  color: #2D232E;
+  color: #261D4F;
   font-family: 'Josefin Sans', sans-serif;
   font-weight: 400;
-  background: rgba(104,109,136,0.95);
+  background: rgba(104,109,136,0.8);
   box-shadow:  inset 0 0 60px rgba(104,109,136,1),
     0 0 60px rgba(104,109,136,0.7);
-  height: 60vh;
-  width: 40vw;
-  transition: 1s;
+  height: 50vh;
   border-bottom-left-radius: 100%;
   border-top-left-radius: 100%;
-  right: 0;
-  justify-self: right;
-
   align-content: center;
   align-items: center;
   justify-items: center;
@@ -201,7 +157,7 @@
 }
 .Service {
   font-size: 2vw;
-  color: #474448;
+  color: #261D4F;
   font-family: 'Josefin Sans', sans-serif;
   font-weight: 200;
   z-index: 1;
@@ -225,51 +181,43 @@
 }
 #ShowCaseBackground {
   position: absolute;
-  height: 120vh;
+  height: 100vh;
   width: 100vw;
   border-bottom-left-radius: 100%;
   border-top-left-radius: 100%;
   transition:  0.4s ease-in-out;
   z-index: 0;
   filter:blur(2px);
-  transform: translateY(-10vh);
   max-width: 99%;
   overflow-x: hidden;
-
 }
 #Item1Background {
-  background-color: rgba(03, 06, 07, .35);
-  width: 85vw;
-  transform: translate(6vw, -7vh) skew(-50deg) scale(1,1);
+  background-color: rgba(255, 252, 242, .35);
+  width: 78vw;
+  transform: translate(6vw, -7vh) skew(-50deg);;
 }
 #Item2Background {
-  width: 98vw;
-  transform: translate(6vw, -7vh) skew(-50deg) scale(1,1);
+  width: 95vw;
+  transform: translate(6vw, -7vh) skew(-50deg);;
 }
 #Item3Background {
-  width: 98vw;
-  transform: translate(6vw, -7vh) skew(50deg) scale(1,1);
+  width: 95vw;
+  transform: translate(6vw, -7vh) skew(50deg);;
 }
 #Item4Background {
-  width: 85vw;
-  transform: translate(6vw, -7vh) skew(50deg) scale(1,1);
+  width: 78vw;
+  transform: translate(6vw, -7vh) skew(50deg);;
 }
 #Item1Background, #Item2Background, #Item3Background, #Item4Background {
   z-index: -1;
   box-shadow:  inset 0 0 30px rgba(255, 252, 242, .4),
   0 0 60px rgba(255,252,242,0.5);
-  background-color: rgba(03, 06, 07, .35);
+  background-color: rgba(255, 252, 242, .35);
   overflow-x: hidden;
   position: absolute;
   right: 0;
   transition: 1s;
   height: 18vh;
-}
-#Item1Background:hover, #Item4Background:hover {
-  width: 88vw;
-}
-#Item2Background:hover, #Item3Background:hover {
-  width: 100vw;
 }
 .TextContent {
   z-index: 5;
