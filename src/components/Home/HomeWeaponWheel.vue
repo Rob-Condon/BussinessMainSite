@@ -134,22 +134,22 @@
                 if(number === 1) {
                    this.CircleSpokes[1].style.transform = 'rotate(70deg) translate(6vw, 0vw)'
                 } else {
-                   this.CircleSpokes[1].style.transform = 'rotate(70deg)'
+                   this.CircleSpokes[1].style.transform = 'rotate(70deg) translate(-3vw, 0vw)'
                 }
                 if(number === 2) {
-                  this.CircleSpokes[2].style.transform = 'rotate(30deg) translate(4vw, 0vw)'
+                  this.CircleSpokes[2].style.transform = 'rotate(30deg) translate(4vw, -3vw)'
                 } else {
-                  this.CircleSpokes[2].style.transform = 'rotate(30deg)'
+                  this.CircleSpokes[2].style.transform = 'rotate(30deg) translate(-2vw, -3vw)'
                 }
                 if(number === 3) {
-                   this.CircleSpokes[3].style.transform = 'rotate(-30deg) translate(5vw, 0vw)'
+                   this.CircleSpokes[3].style.transform = 'rotate(-30deg) translate(5vw, -3.5vw)'
                 } else {
-                   this.CircleSpokes[3].style.transform = 'rotate(-30deg)'
+                   this.CircleSpokes[3].style.transform = 'rotate(-30deg) translate(0.5vw, -3.5vw)'
                 }
                 if(number === 4) {
-                   this.CircleSpokes[4].style.transform = 'rotate(-70deg) translate(8vw, 0vw)'
+                   this.CircleSpokes[4].style.transform = 'rotate(-70deg) translate(8vw, -2vw)'
                 } else {
-                   this.CircleSpokes[4].style.transform = 'rotate(-70deg)'
+                   this.CircleSpokes[4].style.transform = 'rotate(-70deg) translate(-0vw, -2vw)'
                 }
                 console.log("got to here without issue")
             }
@@ -164,7 +164,7 @@
 <style scoped>
 #Wrapper {
   padding-top: 10vw;
-  padding-bottom: 10vw;
+  padding-bottom: 20vw;
   max-width: 100%;
   overflow-x: hidden;
 }
@@ -172,7 +172,7 @@
   margin-top: 8vw;
   margin-bottom: 8vw;
   width: 25vw;
-  height: 50vw;
+  height: 35vw;
 
   transform: scale(3, 1.3);
   border-bottom-right-radius: 100%;
@@ -184,7 +184,7 @@
   margin-top: 8vw;
   margin-bottom: 8vw;
   width: 25vw;
-  height: 50vw;
+  height: 35vw;
   border-bottom-right-radius: 900vw;
   border-top-right-radius:900vw;
   background-repeat: no-repeat;
@@ -201,11 +201,11 @@
   z-index: -1;
   position: absolute;
   width: 30vw;
-  height: 8vw;
-  border-bottom-right-radius: 15%;
-  border-top-right-radius: 15%;
+  height: 10vw;
+  border-bottom-right-radius: 25%;
+  border-top-right-radius: 25%;
   background-color: #F6E8EA;
-  transform: rotate(70deg);
+  transform: rotate(70deg) translate(-3vw, 0vw);
   top: 60%;
   transition: 0.3s;
 }
@@ -214,7 +214,7 @@
   transform: rotate(-70deg) scale(0.333, 0.8) translate(11vw, 14vw);
 }
 #Chunk2Text {
-  transform: rotate(-30deg) scale(0.333, 0.8) translate(30vw, 9vw);
+  transform: rotate(-30deg) scale(0.333, 0.8) translate(28vw, 11vw);
 }
 #ImageMarketing {
   transform: rotate(-70deg) scale(0.333, 0.8) translate(17.5vw, 18vw);
@@ -245,10 +245,10 @@
   position: absolute;
 }
 #Chunk3Text {
-  transform: rotate(30deg) scale(0.333, 0.8) translate(33vw, -7vw);
+  transform: rotate(30deg) scale(0.333, 0.8) translate(40vw, -4vw);
 }
 #Chunk4Text {
-  transform: rotate(70deg) scale(0.333, 0.8) translate(12vw, -13.5vw);
+  transform: rotate(70deg) scale(0.333, 0.8) translate(16vw, -14vw);
 }
 .ChunkText {
   font-size: 3vw;
@@ -263,7 +263,7 @@
 
 }
 .ChunkTextHolder {
-  transform: scale(0.333, 0.8) translateY(8vw);
+  transform: scale(0.333, 0.8) translateY(0vw);
 }
 .ChunkTitleLine {
   width: 30vw;
@@ -281,11 +281,11 @@
 #CircleChunk2 {
   position: absolute;
   width: 29vw;
-  height: 10vw;
-  border-bottom-right-radius: 15%;
-  border-top-right-radius: 15%;
+  height: 13vw;
+  border-bottom-right-radius: 25%;
+  border-top-right-radius: 25%;
   background-color: #F4FAFF;
-  transform: rotate(30deg);
+  transform: rotate(30deg) translate(-2vw, -3vw);
   top: 46%;
   transition: 0.3s;
   z-index: -1;
@@ -301,12 +301,12 @@
 }
 #CircleChunk3 {
   position: absolute;
-  width: 29vw;
-  height: 10vw;
-  border-bottom-right-radius: 15%;
-  border-top-right-radius: 15%;
+  width: 30.5vw;
+  height: 14vw;
+  border-bottom-right-radius: 25%;
+  border-top-right-radius: 25%;
   background-color: #F4FAFF;
-  transform: rotate(-30deg);
+  transform: rotate(-30deg) translate(0.5vw, -3.5vw);
   top: 33%;
   transition: 0.3s;
   z-index: -1;
@@ -316,10 +316,10 @@
   position: absolute;
   width: 29vw;
   height: 10vw;
-  border-bottom-right-radius: 15%;
-  border-top-right-radius: 15%;
+  border-bottom-right-radius: 25%;
+  border-top-right-radius: 25%;
   background-color: #F6E8EA;
-  transform: rotate(-70deg);
+  transform: rotate(-70deg) translate(-0vw, -2vw);
   top: 19%;
   transition: 0.3s;
   z-index: -1;

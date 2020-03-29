@@ -1,5 +1,5 @@
 <template>
-  <div style="background: linear-gradient(to left,#A4B0F5, #FFFCF2); width: 100vw; overflow-x: hidden; max-width: 100%">
+  <div style="background: linear-gradient(to left,#A4B0F5, #FFFCF2); width: 100vw; overflow-x: hidden;">
     <navbar></navbar>
     <home-page-splash-screen ></home-page-splash-screen>
     <div>

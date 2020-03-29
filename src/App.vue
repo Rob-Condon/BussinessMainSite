@@ -21,6 +21,9 @@ export default {
   text-align: center;
   max-width: 100%;
   width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
 }
+  body{
+    margin: initial;
+  }
 </style>

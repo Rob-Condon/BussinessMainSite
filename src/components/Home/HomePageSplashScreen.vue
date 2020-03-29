@@ -12,7 +12,7 @@
         <h1 id="LogoBottomText"> Web Design and App Specialists </h1>
 
       </div>
-      <img src="../../assets/images/LaptopBackground-min.png" alt="None" id="LaptopImage">
+      <img src="../../assets/images/LaptopBackground-Scale.png" alt="None" id="LaptopImage">
     </div>
 
     <div id="SplashImage"></div>
@@ -37,8 +37,9 @@
                     "#LogoNameRight", 1, {x:0}).to("#LogoNameLeft", 1, {x:20}, "-=1").from(
                         "#line", 0.3, { scaleX: 0, transformOrigin: "right center" }).to("#LogoBottomText", 0.45, { y: -80, opacity: 1 }, "text").to(
                             '#LogoName', 0.7, {y: '-1vh', ease: Back.easeOut.config(1)}).to(
-                                '#LaptopImage', 0.5, {opacity: 1, ease: Back.easeOut.config(0.5)},'-=0.5').to('#InColor', 0.75, {color: 'white'}, '-=0.5').to(
-                                    '#LogoBottomText', 0.5, {x:'5vw'}, '-=1.5').to('#LaptopImage', 1, {x:'-15.6vw'}).to('#LogoName',1,{x:'10vw'},'-=1');
+                                '#LaptopImage', 0.5, {opacity: 1, ease: Back.easeOut.config(0.5)},'-=0.5').to(
+                                    '#LogoBottomText', 0.5, {x:'5vw'}, '-=1.5').to('#LaptopImage', 1, {x:'-17.6vw'}).to('#LogoName',1,{x:'10vw'},'-=1').to(
+                                        '#InColor', 0.75, {color: 'white'}, '-=0.5');
 
 
 
@@ -133,7 +134,7 @@
     color: #261D4F;
   }
   #LaptopImage {
-    width: 45vw;
+    width: 35vw;
     z-index: -1;
     transform: translateX(-25.6vw);
     position: absolute;
@@ -144,10 +145,11 @@
     opacity: 0;
     z-index: 0;
     position: absolute;
-    width: 100vw;
+    //width: 100vw;
     height: 100vh;
     top: 0;
     left: 0;
+    overflow: hidden;
   }
 
 
