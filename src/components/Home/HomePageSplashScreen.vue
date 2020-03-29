@@ -25,9 +25,6 @@
     import {  Back, Elastic, Expo, TimelineMax } from "gsap"
     export default {
         data() {
-            return{
-                SplashZoneBackground:  require('../../assets/images/Tiny/WebDesgin.png'),
-            }
         },
         methods: {
 
